@@ -2,22 +2,18 @@ require "sinatra"
 require "sinatra/reloader"
 
 get("/") do
-  "
-  <h1>Welcome to Rock-Paper-Scissors!</h1>
-  <p>
-  </p>
-  "
+  erb (:rules)
 end
 
 get("/rock") do
-moves = ["rock","paper","scissor"]
+moves = ["rock","paper","scissors"]
 @comp_move = moves.sample
 
 if @comp_move == "rock"
   @outcome = "tied!"
 elsif @comp_move == "paper"
   @outcome = "lost!"
-else @comp_move == "scissor"
+else @comp_move == "scissors"
   @outcome = "won!"
 end 
 
@@ -26,15 +22,15 @@ erb (:rock_results)
 end
 
 get("/paper") do
-  moves = ["rock","paper","scissor"]
+  moves = ["rock","paper","scissors"]
   @comp_move = moves.sample
-  
-  if @comp_move == "paper"
-    @outcome = "tied!"
-  elsif @comp_move == "scissor"
-    @outcome = "lost!"
-  else @comp_move == "rock"
+    
+  if @comp_move == "scissors"
+   @outcome = "lost!"
+  elsif @comp_move == "rock"
     @outcome = "won!"
+  else @comp_move == "paper"
+    @outcome = "tied!"
   end 
   
   erb (:paper_results)
